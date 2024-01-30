@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bt7</title>
+</head>
+<body>
+    <input type="text" placeholder="Nhap ten">
+    <button id="add">them</button>
+    <button id="del">xoa</button>
+    <ul>
+
+    </ul>
+    <script>
+        let addbtn=document.getElementById("add");
+        let delbtn=document.getElementById("del");
+        let input=document.querySelector("input");
+        let ul=document.querySelector("ul");
+
+        add_btn.addEventListener("click",function () 
+        {
+
+            ul.innerHTML+=`<li>${input.value}</li>`;
+            localStorage.setItem("user",JSON.stringify(input.value));
+            input.value="";
+            add_btn.style.display="none";
+        })
+        del_btn.addEventListener("click",function()
+        {
+            ul.innerHTML="";
+            add_btn.style.display="";
+            localStorage.removeItem("user");
+        })
+    </script>
+</body>
+</html>

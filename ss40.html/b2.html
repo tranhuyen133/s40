@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h2>Quản lý Cầu thủ</h2>
+
+Tên cầu thủ:
+<input type="text" id="playerName" placeholder="Nhập tên cầu thủ">
+<button onclick="addPlayer()">Thêm Cầu thủ</button>
+
+<div id="playerList">
+    <h3>Danh sách Cầu thủ:</h3>
+    <ul id="players"></ul>
+</div>
+
+<script>
+    function addPlayer() {
+        var playerNameInput = document.getElementById('playerName');
+        var playerName = playerNameInput.value;
+
+        if (playerName === '') {
+            alert('Vui lòng nhập tên cầu thủ.');
+            return;
+        }
+        var players = JSON.parse(localStorage.getItem('players')) || [];
+        var playerId = Math.random().toString(36).substr(2, 9);
+        players.push({ id: playerId, name: playerName });
+        localStorage.setItem('players', JSON.stringify(players));
+        displayPlayers(players);
+        playerNameInput.value = '';
+    }
+    function displayPlayers(players) {
+        var playersList = document.getElementById('players');
+        playersList.innerHTML = '';
+
+        players.forEach(function(player) {
+            var listItem = document.createElement('li');
+            listItem.textContent = player.name;
+            playersList.appendChild(listItem);
+        });
+    }
+    window.onload = function() {
+        var players = JSON.parse(localStorage.getItem('players')) || [];
+        displayPlayers(players);
+    };
+</script>
+
+</body>
+</html>
